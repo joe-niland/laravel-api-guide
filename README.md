@@ -12,7 +12,7 @@ Sections
 
 1. [Installing Laravel](Installing-Laravel.md)
 2. [Working with Laravel](Working-With-Laravel.md)
-3. [Building an Application with Laravel](Building-an-Application-with-Laravel.md)
+3. [Building an Application with Laravel](Building-an-Application-with-Laravel.md) **Coming soon**
    - [Accounts Endpoint - Basic Creation](Accounts-Endpoint-Basics.md)
    - [Accounts Endpoint - Porting Existing Code](Accounts-Endpoint-Porting.md)
    - [Improving Model Validation](Improving-Model-Validation.md)
@@ -21,7 +21,7 @@ Sections
 4. [Application Management](Application-Management.md) **Incomplete**
 5. [Unit Testing](Unit-Tests.md) **Incomplete**
 6. [Deployment](Deployment.md) **Incomplete**
-7. [Laravel and PHP Best Practices](Dos-and-Donts.md)
+7. [Laravel and PHP Best Practices](Dos-and-Donts.md) **Coming soon**
 
 Licence
 ========
