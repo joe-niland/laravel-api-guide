@@ -1,6 +1,8 @@
 laravel-api-guide :: Laravel 5.1 project creation guide for REST APIs
 ===========
 
+The purpose of this repo is to provide a best practice, beginner's guide to creating a REST API with Laravel. I aim to keep this up to date as Laravel evolves. If you find any errors/inconsistencies/out-of-date things, or just want to provide feedback, please get in touch via the methods below. 
+
 Questions/Comments/Haikus
 --------------------------
 
