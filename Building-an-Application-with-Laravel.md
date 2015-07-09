@@ -70,6 +70,7 @@ Let's Do Something!
 We're now ready to start building something unique. We will build out an endpoint to handle user registration, modification and authentication.
 
 We'll use generators to scaffold out our models, controllers, and views.
+
 This guide goes through the exact steps you need to do to implement this endpoint. As a reference I've included them in [laravel-api-sample](https://github.com/joe-niland/laravel-api-sample)
 
 But first we need to install a couple of packages:
@@ -77,21 +78,25 @@ But first we need to install a couple of packages:
 Prerequisites
 ==============
 
-First we need to add generator support to the project. This is done with a single line in the composer.json file.
+First we need to add generator support to the project. Since Laravel 5, some generators have been included, but we need one to create database migrations and seeders, which the package below provides. Generators speed up some repetitive development tasks.
+
+We also want to add the debugbar to help us with our development. This package gives you a debug helper bar right in the browser. 
+
+Adding these is done with a couple of lines in the composer.json file.
 
 1. Open **dev_root**/laravel-api/composer.json
 2. Add the following:
 
-   `
+   ```
    "require-dev": {
-      "way/generators": "2.*",
+      "laracasts/generators": "1.*",
       "barryvdh/laravel-debugbar": "1.*"
    },
-   `
+   ```
 
    after `"require": {}`
 
-   The generators will make it fast to build out our project. The debugbar is useful during development.
+
 
 3. Save and close the file
 4. From within the homestead VM, in the **dev_root**/laravel-api/ directory, run the command: `composer update --dev`.
@@ -102,10 +107,17 @@ First we need to add generator support to the project. This is done with a singl
 
    Open app/config/app.php and add the following to the 'providers' array:
 
-   `
+   ```
    'Way\Generators\GeneratorsServiceProvider',
    'Barryvdh\Debugbar\ServiceProvider',
-   `
+   ```
+
+**NOTE:** You can also do steps 1-4 via the command line:
+
+   ```
+   composer require laracasts/generators --dev
+   composer require barryvdh/laravel-debugbar --dev
+   ```
 
 Using the Generators
 -----------
