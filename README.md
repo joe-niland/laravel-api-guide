@@ -23,7 +23,7 @@ Sections
 4. [Application Management](Application-Management.md) **Incomplete**
 5. [Unit Testing](Unit-Tests.md) **Incomplete**
 6. [Deployment](Deployment.md) **Incomplete**
-7. [Laravel and PHP Best Practices](Dos-and-Donts.md) **Coming soon**
+7. [Laravel & PHP Best Practices](Laravel-and-PHP-Best-Practices.md)
 
 Licence
 ========
