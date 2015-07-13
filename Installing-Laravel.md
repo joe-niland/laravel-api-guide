@@ -214,9 +214,16 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
    **Other**
 
    1. You may also like to change the memory value to 1024 (or less) if your host machine is light on memory.
-   2. You can optionally specify the "smb" type on your folder, if you want to use the SMB method for vagrant shared folders. 
-      
-      If you do this, you'll have to specify the Windows account vagrant will use to connect when you bring the VM up. You'll also need to start vagrant as a Windows account which is in the local Admin group.
+   
+   2. You can optionally add additional databases, just by adding to the list under `databases:`.
+
+    If you want to create additional users for database access, this is done by adding the required commands to the `after.sh` file in `%userprofile%\.homestead\`:
+
+    ```
+    mysql -uhomestead -psecret db2 -e "
+    GRANT ALL PRIVILEGES ON db2.* TO db2_usr@localhost IDENTIFIED BY 'akjshdf7767df';
+    FLUSH PRIVILEGES;"
+    ```
 
    3. To see the full list of settings, check out **scripts\homestead.rb**. Most of the settings in here can be overwritten by values in the yaml file, but the default port mappings are hard coded.
 
@@ -234,21 +241,21 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
     authorize: ~/.ssh/id_rsa.pub
 
     keys:
-        + ~/.ssh/id_rsa
+        - ~/.ssh/id_rsa
 
     folders:
-        + map: C:/Users/Joe/dev/laravel
+        - map: C:/Users/Joe/dev/laravel
           to: /home/vagrant/projects
 
     sites:
-        + map: laravel-api.phplocal.dev
+        - map: laravel-api.phplocal.dev
           to: /home/vagrant/projects/laravel-api/public
 
     databases:
-        + homestead
+        - homestead
 
     variables:
-        + key: APP_ENV
+        - key: APP_ENV
           value: local
 
     # blackfire:
@@ -281,7 +288,7 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
 
 7. **Optional:** if you don't want to bother using your own SSH key, you can comment out the key deployment part in the `homestead.rb` file found in the scripts/ directory. If you do this, vagrant will detect the insecure key during provisioning and replace it with a new key pair. `vagrant ssh` will automatically use this pair. This should be an OK and easier option if you are a solo developer.
 
-  Comment out these lines (from line 72 in the current version of this file):
+  Comment out these lines (from line 72 in the [current version](https://github.com/laravel/homestead/blob/351aebd8bdaf5bb87d76018228b3427b56a7434d/scripts/homestead.rb#L72) of this file):
 
   ```
     # Configure The Public Key For SSH Access
