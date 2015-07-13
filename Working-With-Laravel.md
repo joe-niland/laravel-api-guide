@@ -3,6 +3,13 @@ Working with Laravel
 
 **This section assumes that you're using Laravel Homestead.**
 
+Basic Concepts
+---------------
+
+1. The purpose of the Homestead VM is to provide a **consistent**, configuration-managed environment for your Laravel development. Maximum productivity requires us to isolate ourselves from operating system configuration differences across our own, or our team's machines.
+2. You can use your favourite Windows-based PHP IDE to edit code via the Vagrant shared folders
+3. You will log in via `vagrant ssh` to run command line tasks, such as `php artisan`
+
 Getting Started
 ---------------
 
