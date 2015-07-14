@@ -20,26 +20,40 @@ Configuration
 
 In the last section I explained how to create the base Laravel project. The first step in a new project is to set the configuration as required. 
 
-app/config/app.php
+config/app.php
 =====================
 
-Laravel's configuration is found in app/config/app.php. You will want to change the following:
+Laravel's configuration is found in app/config/app.php. You can change your defaults here if you like, but anything that will vary per environment you'll want to implement using [environment files](http://laravel.com/docs/5.1/installation#environment-configuration). Environment files are stored in your project root and are named as `.env`.
 
-debug: you can set this to true to enable detailed error logging when required. This setting must ALWAYS be false in Production.
-url: set this to the url you'll be using to access the application, e.g. http://laravel-api.phplocal.dev
-timezone: set this to the timezone that's most useful to you. It might be local time or server time.
+By default, the debug and app_key values are set to use environment variables but you can modify anything to use this, like so:
 
-app/config/database.php
+```
+'log' => 'single',
+```
+
+becomes:
+
+```
+'log' => env('LOG_CONFIG', 'single'),
+```
+
+Take a moment now to copy the .env.example file from the project root to .env. If you're developing in a team, leave the .env.example file in place and make sure it contains the same variables as your .env file, but with placeholder values. This is so it can be checked in to source control and used as a reference by team members to set up their own local version of the .env file.
+
+Values to change:
+
+debug: you can set this to true to enable detailed error logging when required. This setting must ALWAYS be false in Production. Set this to true in your .env file.
+url: set this to the url you'll be using to access the application, e.g. http://laravel-api.phplocal.dev. Convert this to an environment variable and set it in .env.
+timezone: set this to the timezone that's most useful to you. It might be local time or server time. Convert this to an environment variable.
+
+config/database.php
 =====================
 
-This file is where all the database connection information is stored. You can remove all the database entries that you won't use. In our case, we can remove everything except for mysql and redis.
+This file is where all the database connection information is stored. You can remove all the database entries that you won't use. For example you may remove everything except for pgsql and redis.
 
-Laravel Bootstrap
-===============
+config/*.php*
+================
 
-### Environments
-
-In the bootstrap/start.php file you can set up environments. These allow you to vary application settings depending on where you are running. The homestead VM already has an environment added for development. The start.php file will automatically detect when your code is NOT running on the homestead VM and will detect the environment as 'production'.
+There are several other config files, which we'll go through later.
 
 Further Reading
 ===============
@@ -52,6 +66,8 @@ Further Reading
 How Does Laravel Process a Request
 ------------------------------------
 Just like many other frameworks, laravel uses a single php file `index.php` to handle all requests. When index.php receives a request from the web server, the following will happen:
+
+**TO BE UPDATED FOR L5**
 
 1. bootstrap/start.php runs - this detects the environment
 2. Service providers loaded - these provide services to your application
@@ -71,7 +87,7 @@ We're now ready to start building something unique. We will build out an endpoin
 
 We'll use generators to scaffold out our models, controllers, and views.
 
-This guide goes through the exact steps you need to do to implement this endpoint. As a reference I've included them in [laravel-api-sample](https://github.com/joe-niland/laravel-api-sample)
+This guide goes through the exact steps you need to do to implement this endpoint. As a reference I've included them in [laravel-api-sample](https://github.com/joe-niland/laravel-api-sample) (**coming soon**)
 
 But first we need to install a couple of packages:
 
