@@ -317,6 +317,15 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
 
 **Continue to [Working with Laravel](Working-With-Laravel.md) for the next steps.**
 
+Troubleshooting
+----------------
+
+**Your synced folders are not available in the vagrant VM**
+
+Solution: exit vagrant ssh and run `vagrant reload` try again.
+
+If this doesn't work, double check the paths you have specified in your Homestead.yaml file.
+
 Updating the Vagrant Box
 --------------------------
 From time to time, Laravel will release updates to the homestead box. These can be downloaded using the approach above or by running `vagrant box update` from your homestead directory.
