@@ -140,10 +140,11 @@ Laravel ships with a command line tool called **artisan**. Artisan lets you inte
 
 To see the commands made available by the above Service Provider, type `php artisan` from **dev_root*/laravel-api/
 
-![php artisan generator commands](http://images.devs-on.net/Image/piyXjG57vBZzBLe5-Region.png)
+![php artisan generator commands](http://i.gyazo.com/01161d32ad55d90689d851b5142a2837.png)](http://gyazo.com/01161d32ad55d90689d851b5142a2837)
 
 ### Further Reading
 
 [Laravel 5.1 Artisan docs](http://laravel.com/docs/artisan)
+
 [Laravel 5 Extended Generator Docs by Laracasts](https://github.com/laracasts/Laravel-5-Generators-Extended)
 
