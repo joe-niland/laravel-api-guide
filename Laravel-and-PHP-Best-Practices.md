@@ -48,7 +48,7 @@ User Input
 Code Organisation and Structure
 --------------------------------
 
-1. Implement the DRY principle: **D**on't **R**epeat **Y**ourself. Any time you see a given piece of logic appear twice, implement it in a base class or helper method. Having the logic in one location makes it much easier to change this logic in future, rather than having to find every place it is implemented.
+1. Implement the DRY principle: **D**on't **R**epeat **Y**ourself. Any time you see a given piece of logic appear twice, implement it in a base class or helper method. Having the logic in one location makes it much easier to change this logic in future, rather than having to find every place it is implemented. It reduces the amount of code you need to manage.
     
     In Laravel, you can implement generic helper functions in a reusable way by defining them in classes within `app/lib/` or `app/helpers/`. Once you have done this add these classes' paths to `composer.json` in the "autoload" section, e.g.:
 

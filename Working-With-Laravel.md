@@ -28,10 +28,10 @@ Getting Started
 
 4. There are a couple of manual steps you need to do now:
 
-   + cd ~/projects/laravel-api
-   + artisan key:generate
-   + cp .env.example .env
-   + Edit .env and copy in the key generated above into the APP_KEY value
+   + `cd ~/projects/laravel-api`
+   + `artisan key:generate`
+   + `cp .env.example .env`
+   + Edit `.env` and copy in the key generated above into the APP_KEY value
 
 ### Testing the laravel-api site
 Let's make sure that everything is working. Open a browser and navigate to `http://laravel-api.phplocal.dev` or `http://localhost:8000`.
@@ -83,6 +83,10 @@ You will ssh into the VM to perform tasks such as:
 ### Connecting to the VM
 Vagrant makes it easy to ssh into a box. All you have to type is `vagrant ssh` from the homestead directory. In the last section, this was set to `**dev_root**\homestead\`. SSH works because we installed Git earlier - Git includes an ssh client for Windows.
 
+#### Troubleshooting Vagrant SSH
+
+If you receive an error from vagrant regarding no ssh executable in your path, and you have used msysgit, you'll most likely need to add `c:\program file (x86)\git\bin` to your path environment variable (mine is in the System PATH variable.)
+
 ### Configuring the VM
 
 There is nothing to configure but you may like to set your local timezone so that log timestamps will make more sense:
@@ -108,15 +112,16 @@ Laravel Project Structure
 --------------------------
 The above composer package installed a base Laravel application in the laravel-api directory. This is how it's laid out:
 
-app/ -> Your application code
-bootstrap/ -> PHP code to initialise the application on each request
-vendor/ -> 3rd party components used by the application
-public/ -> the root directory served by the web server
++ app/ -> Your application code
++ bootstrap/ -> PHP code to initialise the application on each request
++ config/ -> Application configuration
++ vendor/ -> 3rd party components used by the application
++ public/ -> the root directory served by the web server
 
 The project root contains files describing the project, such as composer.json, readme.md, etc.
 
 Adding Packages with Composer
-------------------
+------------------------------
 
 A great feature of Laravel is the fact that it relies on Composer. This means you have very easy access to any of the packages on [packagist](https://packagist.org/) or actually any repository on github that contains a composer.json file!
 

@@ -41,14 +41,14 @@ Take a moment now to copy the .env.example file from the project root to .env. I
 
 Values to change:
 
-debug: you can set this to true to enable detailed error logging when required. This setting must ALWAYS be false in Production. Set this to true in your .env file.
-url: set this to the url you'll be using to access the application, e.g. http://laravel-api.phplocal.dev. Convert this to an environment variable and set it in .env.
-timezone: set this to the timezone that's most useful to you. It might be local time or server time. Convert this to an environment variable.
+**debug:** you can set this to true to enable detailed error logging when required. This setting must ALWAYS be false in Production. Set this to true in your .env file.
+**url:** set this to the url you'll be using to access the application, e.g. http://laravel-api.phplocal.dev. Convert this to an environment variable as described above and set it in .env.
+**timezone:** set this to the timezone that's most useful to you. It might be local time or server time. Convert this to an environment variable. 
 
 config/database.php
 =====================
 
-This file is where all the database connection information is stored. You can remove all the database entries that you won't use. For example you may remove everything except for pgsql and redis.
+This file is where all the database connection information is stored. Again the key config values are set in `.env`. You can optionally remove all the database entries that you won't use. For example you may remove everything except for pgsql and redis.
 
 config/*.php*
 ================
@@ -81,7 +81,7 @@ Further Reading
 This document will summarise the process for creating a Laravel application. I recommend reading the [docs here](http://laravel.com/docs/lifecycle) too.
 
 Let's Do Something!
-==========
+=====================
 
 We're now ready to start building something unique. We will build out an endpoint to handle user registration, modification and authentication.
 
@@ -96,7 +96,7 @@ Prerequisites
 
 First we need to add generator support to the project. Since Laravel 5, some generators have been included, but we need one to create database migrations and seeders, which the package below provides. Generators speed up some repetitive development tasks.
 
-We also want to add the debugbar to help us with our development. This package gives you a debug helper bar right in the browser. 
+We also want to add the debugbar to help us with our development. This package gives you a debug helper toolbar right in the browser. 
 
 Adding these is done with a couple of lines in the composer.json file.
 
@@ -111,8 +111,6 @@ Adding these is done with a couple of lines in the composer.json file.
    ```
 
    after `"require": {}`
-
-
 
 3. Save and close the file
 4. From within the homestead VM, in the **dev_root**/laravel-api/ directory, run the command: `composer update --dev`.
@@ -146,5 +144,6 @@ To see the commands made available by the above Service Provider, type `php arti
 
 ### Further Reading
 
-[Laravel 4 Generator Docs](https://github.com/JeffreyWay/Laravel-4-Generators)
+[Laravel 5.1 Artisan docs](http://laravel.com/docs/artisan)
+[Laravel 5 Extended Generator Docs by Laracasts](https://github.com/laracasts/Laravel-5-Generators-Extended)
 
