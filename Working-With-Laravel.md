@@ -26,6 +26,13 @@ Getting Started
 
    ![composer create laravel project](http://i.gyazo.com/18fba89242edea265e34c75678efb602.png)
 
+4. There are a couple of manual steps you need to do now:
+
+   + cd ~/projects/laravel-api
+   + artisan key:generate
+   + cp .env.example .env
+   + Edit .env and copy in the key generated above into the APP_KEY value
+
 ### Testing the laravel-api site
 Let's make sure that everything is working. Open a browser and navigate to `http://laravel-api.phplocal.dev` or `http://localhost:8000`.
 

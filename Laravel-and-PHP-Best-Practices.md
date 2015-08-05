@@ -21,10 +21,23 @@ Code Generation
 
    This enforces a consistent approach and will save you a lot of time!
 
+Unit Tests
+------------
+
+1. All controller classes must have a corresponding unit test class. Each controller method must have at least one test.
+
 Database Changes
 -----------------
 
 1. Create a new migration for each database change. This allows you to track database changes against versions of the app.
+
+  Migrations can cause data loss if care is not taken. Before running in Production, test each migration on your own development site, as well as on a Staging site. 
+
+  The first place to test the impact of a migration is via unit tests.
+
+  When testing on the Staging site, clone the Production data set into the Staging database to make sure that you are testing on a realistic data set.
+
+  It may be necessary to add more logic to a migration to ensure that data loss is avoided.
 
 User Input
 ------------
@@ -37,7 +50,20 @@ Code Organisation and Structure
 
 1. Implement the DRY principle: **D**on't **R**epeat **Y**ourself. Any time you see a given piece of logic appear twice, implement it in a base class or helper method. Having the logic in one location makes it much easier to change this logic in future, rather than having to find every place it is implemented.
     
-    In Laravel, you can implement generic helper functions in a reusable way by defining them in classes within `app/lib/`. Once you have done this add this path to `app/start/global.php` within the `ClassLoader::addDirectories` array. You can then call them from anywhere in your application.
+    In Laravel, you can implement generic helper functions in a reusable way by defining them in classes within `app/lib/` or `app/helpers/`. Once you have done this add these classes' paths to `composer.json` in the "autoload" section, e.g.:
+
+    ```
+    "autoload": {
+      "classmap": [
+          "database"
+      ],
+      "files": [
+          "app/lib/http-helpers.php"
+      ]
+    },
+    ```
+
+    You can then call them from anywhere in your application, therefore this approach should be used for functions that will be used a lot throughout your app.
 
     This type of global function is not the ideal method because it is not clear exactly how to use the functions, or where they are used.
 
