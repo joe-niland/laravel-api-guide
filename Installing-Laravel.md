@@ -100,23 +100,25 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
 
    This box currently supports the virtualbox and vmware_desktop providers. Choose whichever you like, although the remaining instructions here only cover VirtualBox (for now.)
 
+   You can use `vagrant box add laravel/homestead --provider virtualbox` as a shortcut.
+
    This will take some time to download. The box contains the base operating system and components, without your specific configuration.
 
    If your download is interrupted you can restart it with the above command, however some servers don't support resuming. In this case use `vagrant box add laravel/homestead --clean` to restart the download.
 
 2. **Optional** Manual Download of Vagrant Box
 
-   If this takes too long to download, you can download using a download manager, for example: [Free Download Manager](http://www.freedownloadmanager.org/). You can find the URL to download from the output of the `vagrant box add` command above (Ctrl-C to cancel the vagrant download):
+   If this takes too long to download, you can download using a download manager, for example: [Free Download Manager](http://www.freedownloadmanager.org/) or [aria2c](https://chocolatey.org/packages/aria2). You can find the URL to download from the output of the `vagrant box add` command above (Ctrl-C to cancel the vagrant download):
 
    ![vagrant box add](http://i.gyazo.com/a02efb5e926c55e8d950eda815382d48.png "vagrant box add command")
 
-   Use the download manager to download the box directly from `https://vagrantcloud.com/laravel/homestead/version/8/provider/virtualbox.box`.
+   Use the download manager to download the box directly from `https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.2.7/providers/virtualbox.box`.
 
    You must then add it to the local vagrant box index. To do this:
 
-   `vagrant box add c:\path\to\downloaded\box\homestead-0-1-7.box --name "laravel\homestead"`. The name is very important because it is used to load the box from your Laravel Homestead configuration (see below.)
+   `vagrant box add c:\path\to\downloaded\box\virtualbox.box --name "laravel\homestead"`. The **name is very important** because it is used to load the box from your Laravel Homestead configuration (see below.)
 
-   This will import the box and place its extracted contents in `%USERPROFILE\.vagrant.d\boxes\homestead\`.
+   This will import the box and place its extracted contents in `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\[current_version]\virtualbox\`.
 
    Once you've downloaded **and added** the box once, you can copy it to other machines from the location: `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\`. Copy the entire directory to the same location on the other Windows PC's.
 
