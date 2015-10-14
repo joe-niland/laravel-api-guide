@@ -332,15 +332,30 @@ Updating the Vagrant Box
 --------------------------
 From time to time, Laravel will release updates to the homestead box. These can be downloaded using the approach above or by running `vagrant box update` from your homestead directory.
 
-**Note:** the above approach of manually adding the box from a downloaded file will break the versioning aspect of Vagrant. 
+### Updating via Vagrant (preferred)
 
 If you want to update the box via `vagrant box update` you'll need to replace the box you're using with the versioned one. This can be done with the following command: `vagrant box add --force "laravel/homestead"`
+
+### Updating by downloading the box manually
+
+If you have a slow connection you may like to this method.
+
+1. Download the box manually using aria2, Free Download Manager, etc., using the instructions above.
+2. Once you have the file virtualbox.box, type the following: `vagrant box add laravel-VAGRANTSLASH-homestead c:\temp\virtualbox.box --force`
+
+  It seems `vagrant box add laravel/homestead c:\temp\virtualbox.box --force` should work but I had to use `-VAGRANTSLASH-` instead with Vagrant version 1.7.3.
+3. This will add the Vagrant box to: `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\0\virtualbox\`
+
+  This is because adding the box in this way doesn't support specification of a box version. The next steps shows how to add this version.
+
+4. Now copy `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\0\virtualbox\` to `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\[current_version]\virtualbox\`
+
+  For example, you might copy it to: `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\0.3.0\virtualbox\`
 
 Once you have the new box, you must replace your existing homestead instance. This is safe because the only unique data that the homestead contains is our databases. Our web project data is stored on our host machine. These can be repopulated using our seed scripts, so it's safe to destroy the VM and reprovision it. To do this:
 
 ```
-vagrant destroy
-vagrant up
+vagrant reload
 vagrant ssh
 
 # from within the ssh session:
