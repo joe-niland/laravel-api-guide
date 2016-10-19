@@ -1,7 +1,9 @@
 Installing Laravel
 ==================
 
-This guide is an expanded version of the [Laravel 5.1 Homestead guide](http://laravel.com/docs/5.1/homestead) with modifications specific to Windows 7-10.
+This guide is an expanded version of the [Laravel 5.3 Homestead guide](http://laravel.com/docs/5.3/homestead) with modifications specific to Windows 7-10.
+
+If you're on macOS, you can check out [Laravel Valet](https://laravel.com/docs/5.3/valet) if your needs are simple, or follow the above Homestead guide.
 
 Assumptions
 -----------
@@ -16,26 +18,27 @@ This section explains the **recommended** way to use Laravel. See later in this 
 This method uses a VirtualBox VM running Ubuntu, called _Homestead_, to encompass all of your PHP development components, which has the following benefits:
 
 1. Your development environment is not tied to your PC - it is portable in two senses:
-  + you can copy the VM to another PC using `vagrant [package](http://docs.vagrantup.com/v2/cli/package.html)`
+  + you can copy the VM to another PC using `vagrant package` [vagrant package docs](http://docs.vagrantup.com/v2/cli/package.html)`
   + assuming you haven't modified Homestead, or you've encapsulated the changes using a provisioning tool like Ansible, you can `git clone` and then `vagrant up` to redeploy the dev environment to another PC
 2. Everyone in the team will have an identical PHP development environment - even if Windows is a different version, or they have different configurations, it won't affect the dev environment
 3. PHP on Windows is not the easiest thing to manage, so keeping it on Linux where it likes to be is going to make your life a little bit more simple
-4. Homestead is configured using [Vagrant](http://www.vagrantup.com/), which uses a scripted approach to configuring the VM. Vagrant can also be used to configure EC2 and other cloud provider instances. This means you can be sure that your development environment matches your Production environment.
-5. It's easy to have completely different configurations (e.g. php 5.4 with Apache, or php FPM 5.5 with nginx) available on your machine without having to worry about conflicts.
+4. Homestead is configured using [Vagrant](https://www.vagrantup.com/), which uses a scripted approach to configuring the VM. Vagrant can also be used to configure EC2 and other cloud provider instances. This means you can be sure that your development environment matches your Production environment.
+5. It's easy to have completely different configurations (e.g. php 5.6 with Apache, or php FPM 7.0 with nginx) available on your machine without having to worry about conflicts.
 
 The Homestead VM gives you the following components pre-installed:
-* Ubuntu 14.04
-* PHP 5.6
-* HHVM
+* Ubuntu 16.04
+* Git
+* PHP 7.0
 * Nginx
 * MySQL
+* MariaDB
+* Sqlite3
 * Postgres
-* Node (With Bower, Grunt, and Gulp)
+* Composer
+* Node (With PM2, Bower, Grunt, and Gulp)
 * Redis
 * Memcached
 * Beanstalkd
-* Laravel Envoy
-* Fabric + HipChat Extension
 
 Over time you can modify this to your requirements and repackage the changes to your own, custom Vagrant box.
 
@@ -112,7 +115,7 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
 
    ![vagrant box add](http://i.gyazo.com/a02efb5e926c55e8d950eda815382d48.png "vagrant box add command")
 
-   Use the download manager to download the box directly from `https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.2.7/providers/virtualbox.box`.
+   Use the download manager to download the box directly from `https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.5.0/providers/virtualbox.box`.
 
    You must then add it to the local vagrant box index. To do this:
 
@@ -387,17 +390,17 @@ This section explains how to install Laravel directly on your machine. Method 1 
 
 ### Installing PHP
 
-First you will need PHP installed on your development machine. I recommend installing it via Microsoft's Web Platform Installer.
+First you will need PHP installed on your development machine.
 
-1. In your browser, navigate to [PHP 5.4 download](http://www.microsoft.com/web/gallery/install.aspx?appid=PHP54) or [PHP 5.5 download](http://www.microsoft.com/web/gallery/install.aspx?appid=PHP55) or [PHP 5.6](http://www.microsoft.com/web/gallery/install.aspx?appid=PHP56) and click Install Now.
-2. Web PI will download, install and open, then install PHP.
+You can use Chocolatey to install PHP 5.6:
 
-You can also use Chocolatey to install PHP:
-
-1. cinst webpicmd
-2. cinst -source webpi php56
+`cinst php -version 5.6.17`
 
   ![PHP 5.6 via Chocolatey](http://i.gyazo.com/3d858da9d02b8c5373f051454a38d1bb.png)
+
+or PHP 7.0.x:
+
+`cinst php`
 
 
 ### Installing Laravel
