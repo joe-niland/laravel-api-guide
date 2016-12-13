@@ -26,6 +26,8 @@ Getting Started
 
    ![composer create laravel project](http://i.gyazo.com/18fba89242edea265e34c75678efb602.png)
 
+   Once composer has installed the project's dependencies, it will generate an application key and save it in the .env file.
+
 ### Testing the laravel-api site
 Let's make sure that everything is working. Open a browser and navigate to `http://laravel-api.phplocal.dev` or `http://localhost:8000`.
 
