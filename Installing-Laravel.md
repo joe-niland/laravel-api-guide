@@ -2,6 +2,11 @@ Installing Laravel
 ==================
 
 This guide is an expanded version of the [Laravel 5.3 Homestead guide](http://laravel.com/docs/5.3/homestead) with modifications specific to Windows 7-10.
+<<<<<<< HEAD
+=======
+
+If you're on macOS, you can check out [Laravel Valet](https://laravel.com/docs/5.3/valet) if your needs are simple, or follow the above Homestead guide.
+>>>>>>> a64be4f1e445bc790f1f0f2d692849d920956633
 
 Assumptions
 -----------
@@ -16,24 +21,32 @@ This section explains the **recommended** way to use Laravel. See later in this 
 This method uses a VirtualBox VM running Ubuntu, called _Homestead_, to encompass all of your PHP development components, which has the following benefits:
 
 1. Your development environment is not tied to your PC - it is portable in two senses:
-  + you can copy the VM to another PC using `vagrant [package](http://docs.vagrantup.com/v2/cli/package.html)`
+  + you can copy the VM to another PC using `vagrant package` [vagrant package docs](http://docs.vagrantup.com/v2/cli/package.html)`
   + assuming you haven't modified Homestead, or you've encapsulated the changes using a provisioning tool like Ansible, you can `git clone` and then `vagrant up` to redeploy the dev environment to another PC
 2. Everyone in the team will have an identical PHP development environment - even if Windows is a different version, or they have different configurations, it won't affect the dev environment
 3. PHP on Windows is not the easiest thing to manage, so keeping it on Linux where it likes to be is going to make your life a little bit more simple
-4. Homestead is configured using [Vagrant](http://www.vagrantup.com/), which uses a scripted approach to configuring the VM. Vagrant can also be used to configure EC2 and other cloud provider instances. This means you can be sure that your development environment matches your Production environment.
-5. It's easy to have completely different configurations (e.g. php 5.4 with Apache, or php FPM 5.5 with nginx) available on your machine without having to worry about conflicts.
+4. Homestead is configured using [Vagrant](https://www.vagrantup.com/), which uses a scripted approach to configuring the VM. Vagrant can also be used to configure EC2 and other cloud provider instances. This means you can be sure that your development environment matches your Production environment.
+5. It's easy to have completely different configurations (e.g. php 5.6 with Apache, or php FPM 7.0 with nginx) available on your machine without having to worry about conflicts.
 
 The Homestead VM gives you the following components pre-installed:
 * Ubuntu 16.04
 * Git
+<<<<<<< HEAD
 * PHP 7.1
+=======
+* PHP 7.0
+>>>>>>> a64be4f1e445bc790f1f0f2d692849d920956633
 * Nginx
 * MySQL
 * MariaDB
 * Sqlite3
 * Postgres
 * Composer
+<<<<<<< HEAD
 * Node (With Yarn, PM2, Bower, Grunt, and Gulp)
+=======
+* Node (With PM2, Bower, Grunt, and Gulp)
+>>>>>>> a64be4f1e445bc790f1f0f2d692849d920956633
 * Redis
 * Memcached
 * Beanstalkd
@@ -101,6 +114,8 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
 
    This box currently supports the virtualbox and vmware_desktop providers. Choose whichever you like, although the remaining instructions here only cover VirtualBox (for now.)
 
+   You can use `vagrant box add laravel/homestead --provider virtualbox` as a shortcut.
+
    This will take some time to download. The box contains the base operating system and components, without your specific configuration.
 
    If your download is interrupted you can restart it with the above command, however some servers don't support resuming. In this case use `vagrant box add laravel/homestead --clean` to restart the download.
@@ -111,13 +126,13 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
 
    ![vagrant box add](http://i.gyazo.com/a02efb5e926c55e8d950eda815382d48.png "vagrant box add command")
 
-   Use the download manager to download the box directly from `https://vagrantcloud.com/laravel/homestead/version/8/provider/virtualbox.box`.
+   Use the download manager to download the box directly from `https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.5.0/providers/virtualbox.box`.
 
    You must then add it to the local vagrant box index. To do this:
 
-   `vagrant box add c:\path\to\downloaded\box\homestead-0-1-7.box --name "laravel\homestead"`. The name is very important because it is used to load the box from your Laravel Homestead configuration (see below.)
+   `vagrant box add c:\path\to\downloaded\box\virtualbox.box --name "laravel\homestead"`. The **name is very important** because it is used to load the box from your Laravel Homestead configuration (see below.)
 
-   This will import the box and place its extracted contents in `%USERPROFILE\.vagrant.d\boxes\homestead\`.
+   This will import the box and place its extracted contents in `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\[current_version]\virtualbox\`.
 
    Once you've downloaded **and added** the box once, you can copy it to other machines from the location: `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\`. Copy the entire directory to the same location on the other Windows PC's.
 
@@ -341,15 +356,30 @@ Updating the Vagrant Box
 --------------------------
 From time to time, Laravel will release updates to the homestead box. These can be downloaded using the approach above or by running `vagrant box update` from your homestead directory.
 
-**Note:** the above approach of manually adding the box from a downloaded file will break the versioning aspect of Vagrant. 
+### Updating via Vagrant (preferred)
 
 If you want to update the box via `vagrant box update` you'll need to replace the box you're using with the versioned one. This can be done with the following command: `vagrant box add --force "laravel/homestead"`
+
+### Updating by downloading the box manually
+
+If you have a slow connection you may like to this method.
+
+1. Download the box manually using aria2, Free Download Manager, etc., using the instructions above.
+2. Once you have the file virtualbox.box, type the following: `vagrant box add laravel-VAGRANTSLASH-homestead c:\temp\virtualbox.box --force`
+
+  It seems `vagrant box add laravel/homestead c:\temp\virtualbox.box --force` should work but I had to use `-VAGRANTSLASH-` instead with Vagrant version 1.7.3.
+3. This will add the Vagrant box to: `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\0\virtualbox\`
+
+  This is because adding the box in this way doesn't support specification of a box version. The next steps shows how to add this version.
+
+4. Now copy `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\0\virtualbox\` to `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\[current_version]\virtualbox\`
+
+  For example, you might copy it to: `%USERPROFILE\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead\0.3.0\virtualbox\`
 
 Once you have the new box, you must replace your existing homestead instance. This is safe because the only unique data that the homestead contains is our databases. Our web project data is stored on our host machine. These can be repopulated using our seed scripts, so it's safe to destroy the VM and reprovision it. To do this:
 
 ```
-vagrant destroy
-vagrant up
+vagrant reload
 vagrant ssh
 
 # from within the ssh session:
@@ -381,17 +411,17 @@ This section explains how to install Laravel directly on your machine. Method 1 
 
 ### Installing PHP
 
-First you will need PHP installed on your development machine. I recommend installing it via Microsoft's Web Platform Installer.
+First you will need PHP installed on your development machine.
 
-1. In your browser, navigate to [PHP 5.4 download](http://www.microsoft.com/web/gallery/install.aspx?appid=PHP54) or [PHP 5.5 download](http://www.microsoft.com/web/gallery/install.aspx?appid=PHP55) or [PHP 5.6](http://www.microsoft.com/web/gallery/install.aspx?appid=PHP56) and click Install Now.
-2. Web PI will download, install and open, then install PHP.
+You can use Chocolatey to install PHP 5.6:
 
-You can also use Chocolatey to install PHP:
-
-1. cinst webpicmd
-2. cinst -source webpi php56
+`cinst php -version 5.6.17`
 
   ![PHP 5.6 via Chocolatey](http://i.gyazo.com/3d858da9d02b8c5373f051454a38d1bb.png)
+
+or PHP 7.0.x:
+
+`cinst php`
 
 
 ### Installing Laravel

@@ -24,7 +24,16 @@ Getting Started
 
    Composer will download the latest version of Laravel into your project directory. This will take a few minutes.
 
-   ![composer create laravel project](http://i.gyazo.com/18fba89242edea265e34c75678efb602.png)
+   ![composer create laravel project](http://i.gyazo.com/0055ecb6240c9b3409f09bd94cdf4d7b.png)
+
+   **NOTE:** If you checked out someone else's project from git, there are a couple of manual steps you need to do before you use the project:
+
+   + `cd ~/projects/laravel-api`
+   + `artisan key:generate`
+   + `cp .env.example .env`
+   + Edit `.env` and copy in the key generated above into the APP_KEY value
+
+   The above steps are done during the above `composer create-project` command.
 
    Once composer has installed the project's dependencies, it will generate an application key and save it in the .env file.
 
@@ -33,7 +42,7 @@ Let's make sure that everything is working. Open a browser and navigate to `http
 
 If all goes well, you should see:
 
-[![laravel default page](http://i.gyazo.com/8c5e90894d0ddcc7863849bc8bc39572.png)](http://gyazo.com/8c5e90894d0ddcc7863849bc8bc39572)
+![laravel default page](http://i.gyazo.com/beac2d0175fe405970bb052ca7834446.png)
 
 Let's pause for a second and notice how **awesome** that is: a fully working PHP site with just a few commands. Yes, I know it took a whole chapter to set up vagrant, etc, but you only need to do that once! You didn't need to know anything about nginx config, PHP config, MySQL config, and the list goes on. It just works! And it's not just any PHP site. It's a well-constructed, easy to configure, MVC-based site. Welcome to 2015.
 
@@ -74,9 +83,12 @@ You will ssh into the VM to perform tasks such as:
 * Running composer to update dependencies
 * Running scripts to create database tables
 
-
 ### Connecting to the VM
 Vagrant makes it easy to ssh into a box. All you have to type is `vagrant ssh` from the homestead directory. In the last section, this was set to `**dev_root**\homestead\`. SSH works because we installed Git earlier - Git includes an ssh client for Windows.
+
+#### Troubleshooting Vagrant SSH
+
+If you receive an error from vagrant regarding no ssh executable in your path, and you have used msysgit, you'll most likely need to add `c:\program file (x86)\git\bin` to your path environment variable (mine is in the System PATH variable.)
 
 ### Configuring the VM
 
@@ -91,9 +103,9 @@ sudo timedatectl set-timezone Country/City [choose from above list]
 
 By default there will be a database called `homestead` on MySQL and Postgres already created.
 
-To get to the MySQL database, all you have to do is connect your database development tool to 127.0.0.1:33060.
+To get to the MySQL database, all you have to do is connect your Windows database development tool to 127.0.0.1:33060. Inside the VM, you can use ` mysql -uhomestead -psecret`
 
-The default username password is `forge / ` (no password). The Laravel base project already has these settings configured.
+The default username and password is set in the `.env` file created by the composer installer. (They are `homestead / secret` in case you need to know.)
 
 ### Adding Additional Sites
 
@@ -103,15 +115,16 @@ Laravel Project Structure
 --------------------------
 The above composer package installed a base Laravel application in the laravel-api directory. This is how it's laid out:
 
-app/ -> Your application code
-bootstrap/ -> PHP code to initialise the application on each request
-vendor/ -> 3rd party components used by the application
-public/ -> the root directory served by the web server
++ app/ -> Your application code
++ bootstrap/ -> PHP code to initialise the application on each request
++ config/ -> Application configuration
++ vendor/ -> 3rd party components used by the application
++ public/ -> the root directory served by the web server
 
 The project root contains files describing the project, such as composer.json, readme.md, etc.
 
 Adding Packages with Composer
-------------------
+------------------------------
 
 A great feature of Laravel is the fact that it relies on Composer. This means you have very easy access to any of the packages on [packagist](https://packagist.org/) or actually any repository on github that contains a composer.json file!
 
@@ -127,17 +140,20 @@ e.g.
 
 ```
    "require": {
+         "php": ">=5.5.9",
+         "laravel/framework": "5.1.*"
          "laravel/framework": "4.2.*",
          "league/oauth2-server": "4.0.*@dev",
          "lucadegasperi/oauth2-server-laravel": "dev-rewrite"
       },
       "require-dev": {
-         "way/generators": "2.*",
-         "fzaninotto/faker": "v1.4.0",
+         "fzaninotto/faker": "~1.4",
+         "mockery/mockery": "0.9.*",
+         "phpunit/phpunit": "~4.0",
+         "phpspec/phpspec": "~2.1"
          "rtablada/package-installer": "dev-master",
          "barryvdh/laravel-debugbar": "1.*",
-         "guzzlehttp/guzzle": "~4.0",
-         "phpunit/phpunit": "4.2.*"
+         "guzzlehttp/guzzle": "~4.0"
       },
       "repositories": [
          {
