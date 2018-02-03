@@ -2,8 +2,11 @@ Installing Laravel
 ==================
 
 This guide is an expanded version of the [Laravel 5.3 Homestead guide](http://laravel.com/docs/5.3/homestead) with modifications specific to Windows 7-10.
+<<<<<<< HEAD
+=======
 
 If you're on macOS, you can check out [Laravel Valet](https://laravel.com/docs/5.3/valet) if your needs are simple, or follow the above Homestead guide.
+>>>>>>> a64be4f1e445bc790f1f0f2d692849d920956633
 
 Assumptions
 -----------
@@ -28,14 +31,22 @@ This method uses a VirtualBox VM running Ubuntu, called _Homestead_, to encompas
 The Homestead VM gives you the following components pre-installed:
 * Ubuntu 16.04
 * Git
+<<<<<<< HEAD
+* PHP 7.1
+=======
 * PHP 7.0
+>>>>>>> a64be4f1e445bc790f1f0f2d692849d920956633
 * Nginx
 * MySQL
 * MariaDB
 * Sqlite3
 * Postgres
 * Composer
+<<<<<<< HEAD
+* Node (With Yarn, PM2, Bower, Grunt, and Gulp)
+=======
 * Node (With PM2, Bower, Grunt, and Gulp)
+>>>>>>> a64be4f1e445bc790f1f0f2d692849d920956633
 * Redis
 * Memcached
 * Beanstalkd
@@ -111,7 +122,7 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
 
 2. **Optional** Manual Download of Vagrant Box
 
-   If this takes too long to download, you can download using a download manager, for example: [Free Download Manager](http://www.freedownloadmanager.org/) or [aria2c](https://chocolatey.org/packages/aria2). You can find the URL to download from the output of the `vagrant box add` command above (Ctrl-C to cancel the vagrant download):
+   If this takes too long to download, you can download using a download manager, for example: [Free Download Manager](http://www.freedownloadmanager.org/) or [Aria2](https://chocolatey.org/packages/aria2). You can find the URL to download from the output of the `vagrant box add` command above (Ctrl-C to cancel the vagrant download):
 
    ![vagrant box add](http://i.gyazo.com/a02efb5e926c55e8d950eda815382d48.png "vagrant box add command")
 
@@ -139,7 +150,7 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
 
 4. Generate the Homestead configuration file (YAML)
 
-  The above project ships with a BASH script for initialising the project on your PC. Therefore this won't work on Windows. Luckily it's a very simple script, so we can easily replicate it:
+  The above project ships with a BASH script for initialising the project on your PC. Therefore this won't work on Windows. Luckily it's a very simple script, so we can easily replicate it in a command prompt:
 
   ```
   # in dev_root\homestead
@@ -147,6 +158,16 @@ See [full list of Vagrant plugins](https://github.com/mitchellh/vagrant/wiki/Ava
   copy src\stubs\Homestead.yaml %userprofile%\.homestead
   copy src\stubs\after.sh %userprofile%\.homestead
   copy src\stubs\aliases %userprofile%\.homestead
+  ```
+
+  or in PowerShell:
+
+  ```
+  # in dev_root\homestead
+  mkdir $env:userprofile\.homestead
+  copy src\stubs\Homestead.yaml $env:userprofile\.homestead
+  copy src\stubs\after.sh $env:userprofile\.homestead
+  copy src\stubs\aliases $env:userprofile\.homestead
   ```
 
   The idea is that you should never make local modifications to the laravel/homestead repo (unless you are contributing.) Therefore you need to store your local config in `%userprofile%\.homestead`.

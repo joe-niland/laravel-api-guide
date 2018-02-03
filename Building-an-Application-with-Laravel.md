@@ -89,62 +89,35 @@ We'll use generators to scaffold out our models, controllers, and views.
 
 This guide goes through the exact steps you need to do to implement this endpoint. As a reference I've included them in [laravel-api-sample](https://github.com/joe-niland/laravel-api-sample) (**coming soon**)
 
-But first we need to install a couple of packages:
-
-Prerequisites
-==============
-
-First we need to add generator support to the project. Since Laravel 5, some generators have been included, but we need one to create database migrations and seeders, which the package below provides. Generators speed up some repetitive development tasks.
-
-We also want to add the debugbar to help us with our development. This package gives you a debug helper toolbar right in the browser. 
-
-Adding these is done with a couple of lines in the composer.json file.
-
-1. Open **dev_root**/laravel-api/composer.json
-2. Add the following:
-
-   ```
-   "require-dev": {
-      "laracasts/generators": "1.*",
-      "barryvdh/laravel-debugbar": "1.*"
-   },
-   ```
-
-   after `"require": {}`
-
-3. Save and close the file
-4. From within the homestead VM, in the **dev_root**/laravel-api/ directory, run the command: `composer update --dev`.
-
-   This will download the generators project and install it.
-
-5. The last step is to add the generators as a Laravel Service Provider:
-
-   Open app/config/app.php and add the following to the 'providers' array:
-
-   ```
-   'Way\Generators\GeneratorsServiceProvider',
-   'Barryvdh\Debugbar\ServiceProvider',
-   ```
-
-**NOTE:** You can also do steps 1-4 via the command line:
-
-   ```
-   composer require laracasts/generators --dev
-   composer require barryvdh/laravel-debugbar --dev
-   ```
-
 Using the Generators
 -----------
 
-Laravel ships with a command line tool called **artisan**. Artisan lets you interact with your project in powerful ways. One of these ways is to perform 'scaffolding', which creates new code files based on templates.
+Laravel ships with a command line tool called **artisan**. Artisan lets you interact with your project in powerful ways. 
+One of these ways is to perform 'scaffolding', which creates new code files based on templates.
 
-To see the commands made available by the above Service Provider, type `php artisan` from **dev_root*/laravel-api/
+To see the commands made available by the above Service Provider, type `php artisan` or just `artisan` from **dev_root*/laravel-api/
 
 ![php artisan generator commands](http://i.gyazo.com/01161d32ad55d90689d851b5142a2837.png)
 
+Before we create a model, we need to create the migrations table in our database. The migrations table tracks the database changes by referencing migration classes. 
+
+```
+artisan migrate:install
+```
+
+To create a model with a migration:
+
+```
+artisan make:model MyModel --migration
+```
+
+Migrations are created as PHP class files in **project_root**/database/migrations. Model classes are place in **project_root**/app/
+
+```
+artisan migrate
+```
+
+
 ### Further Reading
 
-[Laravel 5.1 Artisan docs](http://laravel.com/docs/artisan)
-
-[Laravel 5 Extended Generator Docs by Laracasts](https://github.com/laracasts/Laravel-5-Generators-Extended)
-
+[Laravel 5.3 Artisan docs](http://laravel.com/docs/artisan)

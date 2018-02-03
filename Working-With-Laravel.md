@@ -33,14 +33,14 @@ Getting Started
    + `cp .env.example .env`
    + Edit `.env` and copy in the key generated above into the APP_KEY value
 
-   The above steps are done during the above `composer create-project` command.
+   The above steps are done automatically during the above `composer create-project` command.
 
 ### Testing the laravel-api site
 Let's make sure that everything is working. Open a browser and navigate to `http://laravel-api.phplocal.dev` or `http://localhost:8000`.
 
 If all goes well, you should see:
 
-![laravel default page](http://i.gyazo.com/beac2d0175fe405970bb052ca7834446.png)
+![laravel default page](http://i.imgur.com/VLiLTXe.png)
 
 Let's pause for a second and notice how **awesome** that is: a fully working PHP site with just a few commands. Yes, I know it took a whole chapter to set up vagrant, etc, but you only need to do that once! You didn't need to know anything about nginx config, PHP config, MySQL config, and the list goes on. It just works! And it's not just any PHP site. It's a well-constructed, easy to configure, MVC-based site. Welcome to 2015.
 
