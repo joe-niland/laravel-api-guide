@@ -17,7 +17,7 @@ Getting Started
 
 1. Within the homestead directory on your Windows PC (**dev_root**\homestead) type: `vagrant ssh`
 
-   ![ssh into our vagrant box](http://i.gyazo.com/7130eff58c6ac7eb5be2054c26ac88d5.png)
+   ![ssh into our vagrant box](http://image.prntscr.com/image/1c822eff63384633a9261ebb53eca1d1.png)
 
 2. Within the VM, type `cd ~/projects`
 3. Create the Laravel project with composer: `composer create-project laravel/laravel laravel-api --prefer-dist`.
